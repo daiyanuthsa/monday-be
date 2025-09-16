@@ -7,27 +7,27 @@ namespace App\Repositories;
 
 class {{name}}Repository implements {{name}}RepositoryInterface
 {
-    // protected ${{strtolower(name)}};
+    // protected ${{lowername}};
 
-    // public function __construct({{name}} ${{strtolower(name)}})
+    // public function __construct({{name}} ${{lowername}})
     // {
-    //     $this->{{strtolower(name)}} = ${{strtolower(name)}};
+    //     $this->{{lowername}} = ${{lowername}};
     // }
 
     // Implement the interface methods here
     // public function getAll()
     // {
-    //     // return $this->{{strtolower(name)}}->all();
+    //     // return $this->{{lowername}}->all();
     // }
 
     // public function findById($id)
     // {
-    //     // return $this->{{strtolower(name)}}->find($id);
+    //     // return $this->{{lowername}}->find($id);
     // }
 
     // public function create(array $data)
     // {
-    //     // return $this->{{strtolower(name)}}->create($data);
+    //     // return $this->{{lowername}}->create($data);
     // }
 
     // public function update($id, array $data)

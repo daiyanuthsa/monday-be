@@ -113,8 +113,8 @@ class MakeRepositoryCommand extends Command
     protected function createRepositoryClass($name)
     {
         $template = str_replace(
-            ['{{name}}'], // Placeholder in the stub
-            [$name],      // Value to replace with
+            ['{{name}}', '{{lowername}}'], // Placeholder in the stub
+            [$name, strtolower($name)],      // Value to replace with
             $this->getStub('class') // Get the class stub content
         );
 
