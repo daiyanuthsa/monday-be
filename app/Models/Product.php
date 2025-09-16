@@ -11,11 +11,24 @@ class Product extends Model
     use SoftDeletes;
     protected $fillable = [
         'name',
-        'description',
-        'photo',
+        'about',
+        'thumbnail',
         'price',
-        'category_id'
+        'category_id',
+        'is_popular'
     ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'is_popular' => 'boolean',
+        ];
+    }
     public function category()
     {
         return $this->belongsTo(Category::class);
