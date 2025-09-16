@@ -31,4 +31,8 @@ class Product extends Model
         ->withPivot('stock')
         ->withTimestamps();
     }
+
+    public function transaction(){
+        return $this->hasMany(TransactionProduct::class);
+    }
 }
