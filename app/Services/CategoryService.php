@@ -41,6 +41,27 @@ class CategoryService
         }
         return $this->categoryRepository->update($id, $data);
     }
+
+    public function delete(int $id)
+    {
+
+        $category = $this->categoryRepository->getById($id, ['id', 'photo']);
+
+        if ($category) {
+            $photoPath = $category->getRawOriginal('photo');
+
+            $isDeleted = $this->categoryRepository->delete($id);
+
+            if ($isDeleted && $photoPath) {
+                Storage::disk('public')->delete($photoPath);
+            }
+
+            return $isDeleted;
+        }
+
+        return false; // Kategori tidak ditemukan
+    }
+
     public function uploadPhoto(UploadedFile $photo)
     {
         return $photo->store('categories', 'public');
