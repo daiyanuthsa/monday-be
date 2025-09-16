@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Repositories;
+
+// You might want to import your model here, e.g.:
+// use App\Models\{{name}};
+
+class {{name}}Repository implements {{name}}RepositoryInterface
+{
+    // protected ${{strtolower(name)}};
+
+    // public function __construct({{name}} ${{strtolower(name)}})
+    // {
+    //     $this->{{strtolower(name)}} = ${{strtolower(name)}};
+    // }
+
+    // Implement the interface methods here
+    // public function getAll()
+    // {
+    //     // return $this->{{strtolower(name)}}->all();
+    // }
+
+    // public function findById($id)
+    // {
+    //     // return $this->{{strtolower(name)}}->find($id);
+    // }
+
+    // public function create(array $data)
+    // {
+    //     // return $this->{{strtolower(name)}}->create($data);
+    // }
+
+    // public function update($id, array $data)
+    // {
+    //     // $model = $this->findById($id);
+    //     // if ($model) {
+    //     //     $model->update($data);
+    //     //     return $model;
+    //     // }
+    //     // return null;
+    // }
+
+    // public function delete($id)
+    // {
+    //     // $model = $this->findById($id);
+    //     // if ($model) {
+    //     //     return $model->delete();
+    //     // }
+    //     // return false;
+    // }
+}
