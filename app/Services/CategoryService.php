@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Repositories\CategoryRepository;
+use App\Repositories\CategoryRepositoryInterface;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
@@ -10,7 +10,7 @@ class CategoryService
 {
     protected $categoryRepository;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
@@ -24,23 +24,25 @@ class CategoryService
 
         return $this->categoryRepository->create($data);
     }
-    public function update(int $id, array $data){
+    public function update(int $id, array $data)
+    {
+        // Find the category first. findOrFail will throw an exception if not found.
         $category = $this->categoryRepository->getById($id, ['id', 'photo']);
 
-        if (!$category) {
-            return null; // Or throw an exception
-        }
-
         if (isset($data['photo']) && $data['photo'] instanceof UploadedFile) {
+            // Get the raw path of the old photo before the model is updated
+            $oldPhotoPath = $category->getRawOriginal('photo');
+
             // Delete old photo if exists
-            if ($category->photo) {
-                Storage::delete(str_replace(Storage::url(''), '', $category->photo));
+            if ($oldPhotoPath) {
+                Storage::disk('public')->delete($oldPhotoPath);
             }
             $data['photo'] = $this->uploadPhoto($data['photo']);
         }
         return $this->categoryRepository->update($id, $data);
     }
-    public function uploadPhoto(UploadedFile $photo){
+    public function uploadPhoto(UploadedFile $photo)
+    {
         return $photo->store('categories', 'public');
     }
 }

@@ -17,23 +17,20 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return Category::select($field)->find($id);
     }
-    public function create(array $data){
+    public function create(array $data)
+    {
         return Category::create($data);
     }
-    public function update($id, array $data){
+    public function update($id, array $data)
+    {
         $category = Category::findOrFail($id);
-        if ($category) {
-            $category->update($data);
-            return $category;
-        }
-        return null;
+        $category->update($data);
+        return $category;
     }
-    public function delete($id)    {
+    public function delete($id)
+    {
         $category = Category::findOrFail($id);
-        if ($category) {
-            $category->delete();
-            return true;
-        }
-        return false;
+        $category->delete();
+        return true;
     }
 }
