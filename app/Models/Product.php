@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -47,5 +51,15 @@ class Product extends Model
 
     public function transaction(){
         return $this->hasMany(TransactionProduct::class);
+    }
+
+    /**
+     * Get the product's thumbnail URL.
+     */
+    public function thumbnail(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => url(Storage::url($value)),
+        );
     }
 }
